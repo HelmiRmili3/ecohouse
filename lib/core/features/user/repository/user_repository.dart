@@ -18,11 +18,11 @@ class UserRepository {
           usersCollection.doc(userId).collection('userCredential');
 
       // Get the documents from the 'orders' collection
-      QuerySnapshot ordersSnapshot = await userCollection.get();
+      QuerySnapshot dataSnapshot = await userCollection.get();
 
       // Convert the documents to a list of Order objects
       Map<String, dynamic> data =
-          ordersSnapshot.docs.first.data() as Map<String, dynamic>;
+          dataSnapshot.docs.first.data() as Map<String, dynamic>;
       return UserModule.fromJson(data);
     } catch (e) {
       throw Exception(

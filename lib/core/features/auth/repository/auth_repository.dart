@@ -5,7 +5,6 @@ import 'package:ecohouse/core/features/auth/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-//import 'package:image_picker/image_picker.dart';
 
 class AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -37,7 +36,7 @@ class AuthRepository {
 
       return authResult.user;
     } catch (e) {
-      print('Facebook login failed. Error: ${e}');
+      //print('Facebook login failed. Error: ${e}');
       return null;
     }
   }
@@ -98,9 +97,9 @@ class AuthRepository {
     final storage = FirebaseStorage.instance;
     final Reference storageReference =
         storage.ref().child('images/${DateTime.now().toString()}');
-    final UploadTask uploadTask =
-        storageReference.putFile(File(imageFile.path));
-
+    final UploadTask uploadTask = storageReference.putFile(
+      File(imageFile.path),
+    );
     await uploadTask.whenComplete(() => null);
     final String imageUrl = await storageReference.getDownloadURL();
 

@@ -1,4 +1,9 @@
+import 'package:ecohouse/core/features/orders/bloc/orders_bloc.dart';
+import 'package:ecohouse/core/features/orders/bloc/orders_events.dart';
+import 'package:ecohouse/core/features/orders/bloc/orders_states.dart';
+import 'package:ecohouse/core/features/shoppingCard/models/order.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrderScreenClient extends StatefulWidget {
   const OrderScreenClient({super.key});
@@ -8,6 +13,12 @@ class OrderScreenClient extends StatefulWidget {
 }
 
 class _OrderScreenClientState extends State<OrderScreenClient> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<OrdersBloc>(context).add(OrdersFetchEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,64 +30,45 @@ class _OrderScreenClientState extends State<OrderScreenClient> {
         child: Container(
           height: 600,
           padding: const EdgeInsets.all(16.0),
-          child: ListView.builder(
-            itemCount: 4,
-            itemBuilder: (context, index) {
-              return Card(
-                elevation: 10,
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 120.0,
-                      height: 120.0,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          bottomLeft: Radius.circular(15),
-                        ),
-                        child: Image.asset(
-                          "assets/image2.jpg", // Replace with your image URL
-                          width: 120.0,
-                          height: 120.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 10),
-                        const Text("Text1", style: TextStyle(fontSize: 24)),
-                        const Text(
-                          "text2",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Color.fromARGB(255, 43, 143, 48),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.remove),
-                            ),
-                            const Text("example"),
-                            const SizedBox(width: 10),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.add),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+          child:
+              BlocBuilder<OrdersBloc, OrdersState>(builder: (context, state) {
+            if (state is OrdersInitialState) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
-            },
-          ),
+            } else if (state is OrdersLoadedState) {
+              return ListView.builder(
+                itemCount: state.orders.length,
+                itemBuilder: (context, index) {
+                  OrderModule order = state.orders[index];
+                  return Card(
+                    elevation: 1,
+                    margin:const EdgeInsets.symmetric(vertical: 10),
+                    child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Kg :${order.totalPoints} "),
+                            Text("Points :${order.totalWeight}"),
+                            const IconButton(onPressed: null, icon: Icon(Icons.edit)),
+                            const IconButton(
+                                onPressed: null, icon: Icon(Icons.delete)),
+                          ],
+                        )),
+                  );
+                },
+              );
+            } else if (state is OrdersErrorState) {
+              return Center(
+                child: Text(state.error),
+              );
+            } else {
+              return const Center(
+                child: Text("Unknown error !"),
+              );
+            }
+          }),
         ),
       ),
     );

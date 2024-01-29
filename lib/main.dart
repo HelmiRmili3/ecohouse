@@ -2,6 +2,8 @@ import 'package:ecohouse/core/features/auth/bloc/auth_bloc.dart';
 import 'package:ecohouse/core/features/auth/bloc/auth_states.dart';
 import 'package:ecohouse/core/features/auth/presentation/screens/login_screen_client.dart';
 import 'package:ecohouse/core/features/auth/repository/auth_repository.dart';
+import 'package:ecohouse/core/features/orders/bloc/orders_bloc.dart';
+import 'package:ecohouse/core/features/orders/repository/orders_repository.dart';
 import 'package:ecohouse/core/features/shoppingCard/bloc/shopping_card_bloc.dart';
 import 'package:ecohouse/core/features/shoppingCard/repository/shopping_card_repository.dart';
 import 'package:ecohouse/core/features/user/bloc/user_bloc.dart';
@@ -39,6 +41,11 @@ void main() async {
         BlocProvider(
           create: ((context) => UserBloc(
                 userRepository: UserRepository(),
+              )),
+        ),
+        BlocProvider(
+          create: ((context) => OrdersBloc(
+                ordersRepository: OrdersRepository(),
               )),
         )
       ],

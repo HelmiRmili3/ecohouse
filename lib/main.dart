@@ -1,15 +1,9 @@
+import 'package:ecohouse/config/providers.dart';
 import 'package:ecohouse/core/features/auth/bloc/auth_bloc.dart';
 import 'package:ecohouse/core/features/auth/bloc/auth_states.dart';
 import 'package:ecohouse/core/features/auth/presentation/screens/login_screen_client.dart';
-import 'package:ecohouse/core/features/auth/repository/auth_repository.dart';
-import 'package:ecohouse/core/features/orders/bloc/orders_bloc.dart';
-import 'package:ecohouse/core/features/orders/repository/orders_repository.dart';
-import 'package:ecohouse/core/features/shoppingCard/bloc/shopping_card_bloc.dart';
-import 'package:ecohouse/core/features/shoppingCard/repository/shopping_card_repository.dart';
-import 'package:ecohouse/core/features/user/bloc/user_bloc.dart';
-import 'package:ecohouse/core/features/user/repository/user_repository.dart';
 import 'package:ecohouse/firebase_options.dart';
-import 'package:ecohouse/core/features/shoppingCard/presentation/screens/home_screen_client.dart';
+import 'package:ecohouse/core/features/shopping/presentation/screens/home_screen_client.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,28 +21,7 @@ void main() async {
 
   runApp(
     MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => AuthBloc(
-            authRepository: AuthRepository(),
-          ),
-        ),
-        BlocProvider(
-          create: ((context) => ShoppingCartBloc(
-                repository: ShoppingCardRepository(),
-              )),
-        ),
-        BlocProvider(
-          create: ((context) => UserBloc(
-                userRepository: UserRepository(),
-              )),
-        ),
-        BlocProvider(
-          create: ((context) => OrdersBloc(
-                ordersRepository: OrdersRepository(),
-              )),
-        )
-      ],
+      providers: getAppProviders(),
       child: const MyApp(),
     ),
   );

@@ -1,4 +1,4 @@
-import 'package:ecohouse/core/features/shoppingCard/models/product.dart';
+import 'package:ecohouse/core/features/shopping/models/product.dart';
 
 class OrderModule {
   final String id;

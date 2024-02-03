@@ -42,9 +42,9 @@ class AuthRepository {
   }
 
   Future<UserCredential?> createUser(
-      String email, String password, String name, File imageUrl) async {
+      String email, String password, String name, File image) async {
     try {
-      final image = await uploadImageToFirebaseStorage(imageUrl);
+      final imageUrl = await uploadImageToFirebaseStorage(image);
       final result = await _firebaseAuth
           .createUserWithEmailAndPassword(
         email: email,
@@ -57,7 +57,7 @@ class AuthRepository {
               name: name,
               email: userdata.user!.email ?? '',
               credit: 0,
-              imageUrl: image);
+              imageUrl: imageUrl);
           await addUserDataToFirestore(user);
         }
       });

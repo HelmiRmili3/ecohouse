@@ -3,14 +3,12 @@ import 'dart:io';
 import 'package:ecohouse/core/features/auth/bloc/auth_bloc.dart';
 import 'package:ecohouse/core/features/auth/presentation/screens/login_screen_client.dart';
 import 'package:ecohouse/core/features/auth/presentation/widgets/pick_image_widget.dart';
-import 'package:ecohouse/core/features/shoppingCard/presentation/screens/home_screen_client.dart';
+import 'package:ecohouse/core/features/shopping/presentation/screens/home_screen_client.dart';
+import 'package:ecohouse/core/utils/utils.dart';
 import 'package:ecohouse/values/app_strings.dart';
 import 'package:ecohouse/widgets/app_text_from_field.dart';
-import 'package:file_picker/file_picker.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpScreenClient extends StatefulWidget {
   const SignUpScreenClient({super.key});
@@ -110,16 +108,6 @@ class _SignUpScreenClientState extends State<SignUpScreenClient> {
       }
     }
   }
-  // Future<void> _pickAndUploadFile() async {
-  //   FilePickerResult? result = await FilePicker.platform.pickFiles(
-  //     type: FileType.image,
-  //     allowCompression: true,
-  //   );
-
-  //   if (result != null) {
-  //     PlatformFile file = result.files.first;
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -406,28 +394,6 @@ class Vectors {
   static const String facebook = 'assets/facebook.svg';
 }
 
-void showToast(message) {
-  Fluttertoast.showToast(
-    msg: message,
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
-    backgroundColor: Colors.black,
-    textColor: Colors.white,
-    fontSize: 16.0,
-  );
-}
 
-Future<File?> pickImage() async {
-  File? image;
-  final picker = await FilePicker.platform.pickFiles(
-    type: FileType.image,
-    allowCompression: true,
-  );
 
-  if (picker != null && picker.files.isNotEmpty) {
-    image = File(picker.files.first.path!);
-  }
 
-  return image;
-}

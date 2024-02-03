@@ -1,5 +1,5 @@
 //states
-import 'package:ecohouse/core/features/shoppingCard/models/order.dart';
+import 'package:ecohouse/core/features/shopping/models/order.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class OrdersState extends Equatable {

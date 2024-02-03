@@ -1,11 +1,11 @@
 import 'package:ecohouse/core/features/auth/bloc/auth_bloc.dart';
 import 'package:ecohouse/core/features/auth/presentation/screens/signup_screen_client.dart';
-import 'package:ecohouse/core/features/shoppingCard/presentation/screens/home_screen_client.dart';
+import 'package:ecohouse/core/features/shopping/presentation/screens/home_screen_client.dart';
+import 'package:ecohouse/core/utils/utils.dart';
 import 'package:ecohouse/values/app_strings.dart';
 import 'package:ecohouse/widgets/app_text_from_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreenClient extends StatefulWidget {
   const LoginScreenClient({super.key});
@@ -364,16 +364,4 @@ class FilledButton extends StatelessWidget {
 class Vectors {
   static const String google = 'assets/google.svg';
   static const String facebook = 'assets/facebook.svg';
-}
-
-void showToast(message) {
-  Fluttertoast.showToast(
-    msg: message,
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
-    backgroundColor: Colors.black,
-    textColor: Colors.white,
-    fontSize: 16.0,
-  );
 }

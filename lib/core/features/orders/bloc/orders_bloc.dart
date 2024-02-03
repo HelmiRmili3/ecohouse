@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:ecohouse/core/features/orders/bloc/orders_events.dart';
 import 'package:ecohouse/core/features/orders/bloc/orders_states.dart';
 import 'package:ecohouse/core/features/orders/repository/orders_repository.dart';
-import 'package:ecohouse/core/features/shoppingCard/models/order.dart';
+import 'package:ecohouse/core/features/shopping/models/order.dart';
 
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   final OrdersRepository ordersRepository;

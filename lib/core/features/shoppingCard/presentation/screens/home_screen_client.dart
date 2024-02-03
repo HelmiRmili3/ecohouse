@@ -32,120 +32,119 @@ class _HomeScreenClientState extends State<HomeScreenClient> {
               if (state is ShoppingCartLoading) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is ShoppingCartLoaded) {
-                return Column(
-                  children: [
-                    SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: SizedBox(
-                          height: 600,
-                          child: ListView.builder(
-                            itemCount: state.products.length,
-                            itemBuilder: (context, index) {
-                              return Card(
-                                elevation: 10,
-                                margin:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 120.0,
-                                      height: 120.0,
-                                      child: ClipRRect(
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(15),
-                                          bottomLeft: Radius.circular(15),
-                                        ),
-                                        child: Image.asset(
-                                          "assets/image2.jpg", // Replace with your image URL
-                                          width: 120.0,
-                                          height: 120.0,
-                                          fit: BoxFit.cover,
-                                        ),
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 600,
+                        child: GridView.builder(
+                          itemCount: state.products.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, // Set the horizontal count here
+                            crossAxisSpacing: 4.0,
+                            mainAxisSpacing: 4.0,
+                          ),
+                          itemBuilder: (BuildContext context, int index) {
+                            return Card(
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    margin:const EdgeInsets.all(16.0),
+                                    height: 90,
+                                    width: 90,
+                                    decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/can_8382399.png'),
                                       ),
                                     ),
-                                    const SizedBox(width: 20),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(height: 10),
-                                        Text(state.products[index].name,
-                                            style:
-                                                const TextStyle(fontSize: 24)),
-                                        Text(
-                                          "${state.products[index].pointsPerKg} points"
-                                              .toString(),
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            color: Color.fromARGB(
-                                                255, 43, 143, 48),
-                                          ),
-                                        ),
-                                        Row(
-                                          children: [
-                                            IconButton(
-                                              onPressed: () {
-                                                BlocProvider.of<
-                                                            ShoppingCartBloc>(
-                                                        context)
-                                                    .add(DecrementProduct(state
-                                                        .products[index].id));
-                                              },
-                                              icon: const Icon(Icons.remove),
-                                            ),
-                                            const SizedBox(width: 10),
-                                            BlocBuilder<ShoppingCartBloc,
-                                                    ShoppingCartState>(
-                                                builder: (context, sate) {
-                                              if (state is IncrementProduct) {
-                                                return Text(state
-                                                    .products[index].weight
-                                                    .toString());
-                                              }
-                                              return Text(state
-                                                  .products[index].weight
-                                                  .toString());
-                                            }),
-                                            const SizedBox(width: 10),
-                                            IconButton(
-                                              onPressed: () {
-                                                BlocProvider.of<
-                                                            ShoppingCartBloc>(
-                                                        context)
-                                                    .add(IncrementProduct(state
-                                                        .products[index].id));
-                                              },
-                                              icon: const Icon(Icons.add),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          BlocProvider.of<ShoppingCartBloc>(
+                                                  context)
+                                              .add(
+                                            DecrementProduct(
+                                                state.products[index].id),
+                                          );
+                                        },
+                                        icon: const Icon(Icons.remove),
+                                      ),
+                                      //const SizedBox(width: 8),
+                                      BlocBuilder<ShoppingCartBloc,
+                                              ShoppingCartState>(
+                                          builder: (context, sate) {
+                                        if (state is IncrementProduct) {
+                                          return Text(state
+                                              .products[index].weight
+                                              .toString());
+                                        }
+                                        return Text(state.products[index].weight
+                                            .toString());
+                                      }),
+                                      //const SizedBox(width: 8),
+                                      IconButton(
+                                        onPressed: () {
+                                          BlocProvider.of<ShoppingCartBloc>(
+                                                  context)
+                                              .add(
+                                            IncrementProduct(
+                                                state.products[index].id),
+                                          );
+                                        },
+                                        icon: const Icon(Icons.add),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () async {
-                            await BlocProvider.of<ShoppingCartBloc>(context)
-                                .repository
-                                .addOrder(state.products)
-                                .then(
-                                  (value) =>
-                                      BlocProvider.of<ShoppingCartBloc>(context)
-                                          .add(
-                                    FetchProducts(),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () async {
+                              await BlocProvider.of<ShoppingCartBloc>(context)
+                                  .repository
+                                  .addOrder(state.products)
+                                  .then(
+                                    (value) =>
+                                        BlocProvider.of<ShoppingCartBloc>(
+                                                context)
+                                            .add(
+                                      FetchProducts(),
+                                    ),
+                                  )
+                                  .then((value) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const OrderScreenClient(),
                                   ),
-                                )
-                                .then((value) {
+                                );
+                              });
+                            },
+                            child: const Text("Continue"),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -153,27 +152,13 @@ class _HomeScreenClientState extends State<HomeScreenClient> {
                                       const OrderScreenClient(),
                                 ),
                               );
-                            });
-                          },
-                          child: const Text("Continue"),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const OrderScreenClient(),
-                              ),
-                            );
-                          },
-                          child: const Text("Orders"),
-                        )
-                      ],
-                    )
-                  ],
+                            },
+                            child: const Text("Orders"),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 );
               } else if (state is ShoppingCartError) {
                 return Center(child: Text('Error: ${state.message}'));

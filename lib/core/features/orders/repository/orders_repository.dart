@@ -30,6 +30,7 @@ class OrdersRepository {
             .toList();
 
         return OrderModule(
+          id: doc.id,
           products: products,
           totalPoints: doc['totalPoints'],
           totalWeight: doc['totalWeight'],
@@ -39,6 +40,25 @@ class OrdersRepository {
       return ordersList;
     } catch (e) {
       throw Exception('Failed to fetch Orders: $e');
+    }
+  }
+
+  Future<void> deleteOrder(String orderId) async {
+    try {
+      // Get a reference to the 'orders' collection
+      CollectionReference usersCollection = _firestore.collection('users');
+
+      // Get the current user's ID
+      String userId = _auth.currentUser!.uid;
+
+      // Get a reference to the specific order document
+      DocumentReference orderDocument =
+          usersCollection.doc(userId).collection('orders').doc(orderId);
+
+      // Delete the document
+      await orderDocument.delete();
+    } catch (e) {
+      throw Exception('Failed to delete Order: $e');
     }
   }
 }

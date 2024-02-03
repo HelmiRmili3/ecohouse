@@ -10,12 +10,25 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   OrdersBloc({required this.ordersRepository}) : super(OrdersInitialState()) {
     // Register event handlers during initialization
     on<OrdersFetchEvent>(_mapOrdersFetchEventToState);
+    on<OrderDeleteEvent>(_mapOrderDeleteToState);
   }
 
   void _mapOrdersFetchEventToState(
       OrdersFetchEvent event, Emitter<OrdersState> emit) async {
     emit(OrdersInitialState());
     try {
+      List<OrderModule> orders = await ordersRepository.fetchOrders();
+      emit(OrdersLoadedState(orders: orders));
+    } catch (e) {
+      emit(OrdersErrorState(error: e.toString()));
+    }
+  }
+
+  void _mapOrderDeleteToState(
+      OrderDeleteEvent event, Emitter<OrdersState> emit) async {
+    //emit(OrdersInitialState());
+    try {
+      await ordersRepository.deleteOrder(event.id);
       List<OrderModule> orders = await ordersRepository.fetchOrders();
       emit(OrdersLoadedState(orders: orders));
     } catch (e) {

@@ -28,7 +28,7 @@ class _OrderScreenClientState extends State<OrderScreenClient> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          height: 600,
+          height: MediaQuery.of(context).size.height,
           padding: const EdgeInsets.all(16.0),
           child:
               BlocBuilder<OrdersBloc, OrdersState>(builder: (context, state) {
@@ -43,19 +43,26 @@ class _OrderScreenClientState extends State<OrderScreenClient> {
                   OrderModule order = state.orders[index];
                   return Card(
                     elevation: 1,
-                    margin:const EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
                     child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Kg :${order.totalPoints} "),
-                            Text("Points :${order.totalWeight}"),
-                            const IconButton(onPressed: null, icon: Icon(Icons.edit)),
-                            const IconButton(
-                                onPressed: null, icon: Icon(Icons.delete)),
-                          ],
-                        )),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("KG :${order.totalWeight}"),
+                          Text("Points :${order.totalPoints} "),
+                          const IconButton(
+                              onPressed: null, icon: Icon(Icons.edit)),
+                          IconButton(
+                              onPressed: () {
+                                context.read<OrdersBloc>().add(
+                                      OrderDeleteEvent(id: order.id),
+                                    );
+                              },
+                              icon: const Icon(Icons.delete)),
+                        ],
+                      ),
+                    ),
                   );
                 },
               );

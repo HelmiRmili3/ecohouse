@@ -43,13 +43,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/exodus2.gif
-    - assets/facebook.jpg
-    - assets/facebook.svg
-    - assets/google.svg
-    - assets/twitter.svg
-    - assets/logo.png
-    - assets/profile_avatar.jpg
-    - assets/image1.jpg
-    - assets/image2.jpg
-    - assets/image3.jpg
+    - assets/

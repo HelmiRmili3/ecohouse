@@ -12,7 +12,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpScreenClient extends StatefulWidget {
   const SignUpScreenClient({super.key});
-
   @override
   State<SignUpScreenClient> createState() => _SignUpScreenClientState();
 }

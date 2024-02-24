@@ -8,7 +8,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
 
   AuthBloc({required this.authRepository}) : super(AuthInitialState()) {
-    // Register event handlers during initialization
     on<AuthSignInEvent>(_mapSignInEventToState);
     on<AuthSignUpEvent>(_mapSignUpEventToState);
     on<AuthSignOutEvent>(_mapSignOutEventToState);

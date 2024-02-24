@@ -25,7 +25,6 @@ class _ProductsGridState extends State<ProductsGrid> {
   Future<void> handleAddProduct() async {
     try {
       image = await pickImage();
-
       // ignore: use_build_context_synchronously
       await BlocProvider.of<ShoppingCartBloc>(context)
           .repository
@@ -91,27 +90,27 @@ class _ProductsGridState extends State<ProductsGrid> {
                 },
                 child: const Text("Continue"),
               ),
-              const SizedBox(
-                width: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const OrderScreenClient(),
-                    ),
-                  );
-                },
-                child: const Text("Orders"),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              ElevatedButton(
-                onPressed: handleAddProduct,
-                child: const Text("Add Product"),
-              )
+              // const SizedBox(
+              //   width: 20,
+              // ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => const OrderScreenClient(),
+              //       ),
+              //     );
+              //   },
+              //   child: const Text("Orders"),
+              // ),
+              // const SizedBox(
+              //   width: 20,
+              // ),
+              // ElevatedButton(
+              //   onPressed: handleAddProduct,
+              //   child: const Text("Add Product"),
+              // )
             ],
           )
         ],

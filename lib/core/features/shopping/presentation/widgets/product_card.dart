@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModule product;
-
+  // the product consist of {icon ,points , name , id , initialWeight}
   const ProductCard({Key? key, required this.product}) : super(key: key);
 
   @override

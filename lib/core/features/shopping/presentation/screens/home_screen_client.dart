@@ -1,11 +1,7 @@
-
-import 'package:ecohouse/core/features/shopping/bloc/shopping_card_bloc.dart';
-import 'package:ecohouse/core/features/shopping/bloc/shopping_card_events.dart';
-import 'package:ecohouse/core/features/shopping/bloc/shopping_card_states.dart';
-import 'package:ecohouse/core/features/shopping/presentation/widgets/custom_app_bar.dart';
-import 'package:ecohouse/core/features/shopping/presentation/widgets/products_grid.dart';
+import 'package:ecohouse/core/features/shopping/presentation/screens/orders_screen_client.dart';
+import 'package:ecohouse/core/features/shopping/presentation/screens/products_screen_client.dart';
+import 'package:ecohouse/screens/profile_screen_client.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreenClient extends StatefulWidget {
   const HomeScreenClient({Key? key}) : super(key: key);
@@ -15,35 +11,47 @@ class HomeScreenClient extends StatefulWidget {
 }
 
 class _HomeScreenClientState extends State<HomeScreenClient> {
-
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<ShoppingCartBloc>(context).add(FetchProducts());
-  }
+  // int myCurrentIndex = 0;
+  // List pages = const [
+  //   ProductScreenClient(),
+  //   OrderScreenClient(),
+  //   ProfileScreenClient(),
+  // ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildCustomAppBar(context),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          BlocBuilder<ShoppingCartBloc, ShoppingCartState>(
-            builder: (context, state) {
-              if (state is ShoppingCartLoading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state is ShoppingCartLoaded) {
-                return ProductsGrid(products: state.products);
-              } else if (state is ShoppingCartError) {
-                return Center(child: Text('Error: ${state.message}'));
-              } else {
-                return const Center(child: Text('Unknown state'));
-              }
-            },
-          ),
-        ],
-      ),
+    return const Scaffold(
+      // bottomNavigationBar: Container(
+      //   margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      //   decoration: BoxDecoration(boxShadow: [
+      //     BoxShadow(
+      //         color: Colors.black.withOpacity(0.5),
+      //         blurRadius: 25,
+      //         offset: const Offset(8, 20))
+      //   ]),
+      //   child: ClipRRect(
+      //     borderRadius: BorderRadius.circular(30),
+      //     child: BottomNavigationBar(
+      //          //backgroundColor: Colors.transparent,
+      //         selectedItemColor: Colors.blueAccent,
+      //         unselectedItemColor: Colors.black,
+      //         currentIndex: myCurrentIndex,
+      //         onTap: (index) {
+      //           setState(() {
+      //             myCurrentIndex = index;
+      //           });
+      //         },
+      //         items: const [
+      //           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+      //           BottomNavigationBarItem(
+      //               icon: Icon(Icons.settings), label: "Orders"),
+      //           BottomNavigationBarItem(
+      //               icon: Icon(Icons.person_outline), label: "Profile"),
+      //         ]),
+      //   ),
+      // ),
+      //body: pages[myCurrentIndex],
+      body: ProductScreenClient(),
     );
   }
 }

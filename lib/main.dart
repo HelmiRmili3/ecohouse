@@ -3,7 +3,7 @@ import 'package:ecohouse/core/features/auth/bloc/auth_bloc.dart';
 import 'package:ecohouse/core/features/auth/bloc/auth_states.dart';
 import 'package:ecohouse/core/features/auth/presentation/screens/login_screen_client.dart';
 import 'package:ecohouse/firebase_options.dart';
-import 'package:ecohouse/core/features/shopping/presentation/screens/home_screen_client.dart';
+import 'package:ecohouse/core/features/shop/presentation/screens/home_screen_client.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

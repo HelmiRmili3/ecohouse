@@ -1,30 +1,26 @@
-import 'package:ecohouse/core/features/shopping/presentation/screens/home_screen_client.dart';
-import 'package:ecohouse/core/features/shopping/presentation/screens/orders_screen_client.dart';
+import 'package:ecohouse/core/features/shop/presentation/screens/orders_screen_client.dart';
+import 'package:ecohouse/core/features/shop/presentation/screens/products_screen_client.dart';
 import 'package:ecohouse/screens/profile_screen_client.dart';
 import 'package:flutter/material.dart';
 
-class MyBottomNavBar extends StatefulWidget {
-  const MyBottomNavBar({super.key});
+class HomeScreenClient extends StatefulWidget {
+  const HomeScreenClient({Key? key}) : super(key: key);
 
   @override
-  State<MyBottomNavBar> createState() => _MyButtomNavBarState();
+  State<HomeScreenClient> createState() => _HomeScreenClientState();
 }
 
-class _MyButtomNavBarState extends State<MyBottomNavBar> {
+class _HomeScreenClientState extends State<HomeScreenClient> {
   int myCurrentIndex = 0;
   List pages = const [
-    HomeScreenClient(),
+    ProductScreenClient(),
     OrderScreenClient(),
     ProfileScreenClient(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Bottom Navigation Bar"),
-      ),
       bottomNavigationBar: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         decoration: BoxDecoration(boxShadow: [
@@ -36,8 +32,8 @@ class _MyButtomNavBarState extends State<MyBottomNavBar> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: BottomNavigationBar(
-              // backgroundColor: Colors.transparent,
-              selectedItemColor: Colors.redAccent,
+              //backgroundColor: Colors.transparent,
+              selectedItemColor: Colors.blueAccent,
               unselectedItemColor: Colors.black,
               currentIndex: myCurrentIndex,
               onTap: (index) {
@@ -55,6 +51,7 @@ class _MyButtomNavBarState extends State<MyBottomNavBar> {
         ),
       ),
       body: pages[myCurrentIndex],
+      // body: ProductScreenClient(),
     );
   }
 }

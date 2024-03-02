@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:ecohouse/core/features/auth/bloc/auth_bloc.dart';
 import 'package:ecohouse/core/features/auth/presentation/screens/login_screen_client.dart';
 import 'package:ecohouse/core/features/auth/presentation/widgets/pick_image_widget.dart';
-import 'package:ecohouse/core/features/shopping/presentation/screens/home_screen_client.dart';
+import 'package:ecohouse/core/features/shop/presentation/screens/home_screen_client.dart';
 import 'package:ecohouse/core/utils/utils.dart';
 import 'package:ecohouse/values/app_strings.dart';
 import 'package:ecohouse/widgets/app_text_from_field.dart';

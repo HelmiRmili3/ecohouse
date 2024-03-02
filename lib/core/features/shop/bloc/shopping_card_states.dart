@@ -1,5 +1,5 @@
 // shopping_cart_states.dart
-import 'package:ecohouse/core/features/shopping/models/product.dart';
+import 'package:ecohouse/core/features/shop/models/product.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ShoppingCartState extends Equatable {

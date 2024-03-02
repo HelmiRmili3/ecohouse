@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecohouse/core/features/auth/bloc/auth_bloc.dart';
 import 'package:ecohouse/core/features/auth/repository/auth_repository.dart';
-import 'package:ecohouse/core/features/shopping/bloc/shopping_card_bloc.dart';
-import 'package:ecohouse/core/features/shopping/repository/shopping_card_repository.dart';
+import 'package:ecohouse/core/features/shop/bloc/shopping_card_bloc.dart';
+import 'package:ecohouse/core/features/shop/repository/shopping_card_repository.dart';
 import 'package:ecohouse/core/features/user/bloc/user_bloc.dart';
 import 'package:ecohouse/core/features/user/repository/user_repository.dart';
 import 'package:ecohouse/core/features/orders/bloc/orders_bloc.dart';

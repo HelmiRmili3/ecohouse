@@ -1,7 +1,7 @@
 // shopping_cart_bloc.dart
 import 'package:bloc/bloc.dart';
-import 'package:ecohouse/core/features/shopping/repository/shopping_card_repository.dart';
-import 'package:ecohouse/core/features/shopping/models/product.dart';
+import 'package:ecohouse/core/features/shop/repository/shopping_card_repository.dart';
+import 'package:ecohouse/core/features/shop/models/product.dart';
 
 import 'shopping_card_events.dart';
 import 'shopping_card_states.dart';

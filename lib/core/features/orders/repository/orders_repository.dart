@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecohouse/core/features/shop/models/order.dart';
-import 'package:ecohouse/core/features/shop/models/product.dart';
+import 'package:ecohouse/core/features/products/models/order.dart';
+import 'package:ecohouse/core/features/products/models/product.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class OrdersRepository {

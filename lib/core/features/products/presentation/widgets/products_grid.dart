@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:ecohouse/core/features/shop/bloc/shopping_card_bloc.dart';
-import 'package:ecohouse/core/features/shop/bloc/shopping_card_events.dart';
-import 'package:ecohouse/core/features/shop/models/product.dart';
+import 'package:ecohouse/core/features/products/bloc/shopping_card_bloc.dart';
+import 'package:ecohouse/core/features/products/bloc/shopping_card_events.dart';
+import 'package:ecohouse/core/features/products/models/product.dart';
 import 'package:ecohouse/core/features/orders/presentation/screens/orders_screen_client.dart';
-import 'package:ecohouse/core/features/shop/presentation/widgets/product_card.dart';
+import 'package:ecohouse/core/features/products/presentation/widgets/product_card.dart';
 import 'package:ecohouse/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

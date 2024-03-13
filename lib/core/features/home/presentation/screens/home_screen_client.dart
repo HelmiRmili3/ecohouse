@@ -1,5 +1,6 @@
 import 'package:ecohouse/core/features/orders/presentation/screens/orders_screen_client.dart';
-import 'package:ecohouse/core/features/shop/presentation/screens/products_screen_client.dart';
+import 'package:ecohouse/core/features/products/presentation/screens/products_screen_client.dart';
+import 'package:ecohouse/core/features/shop/presentation/screens/shop.dart';
 import 'package:ecohouse/screens/profile_screen_client.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class _HomeScreenClientState extends State<HomeScreenClient> {
   int myCurrentIndex = 0;
   List pages = const [
     ProductScreenClient(),
+    ShopScreen(),
     OrderScreenClient(),
     ProfileScreenClient(),
   ];
@@ -31,6 +33,7 @@ class _HomeScreenClientState extends State<HomeScreenClient> {
             selectedItemColor: Colors.blueAccent,
             unselectedItemColor: Colors.grey,
             currentIndex: myCurrentIndex,
+            type: BottomNavigationBarType.fixed,
             onTap: (index) {
               setState(() {
                 myCurrentIndex = index;
@@ -40,6 +43,10 @@ class _HomeScreenClientState extends State<HomeScreenClient> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shop),
+                label: "Shop",
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),

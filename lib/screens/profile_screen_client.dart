@@ -46,6 +46,7 @@ class ProfileScreenClientState extends State<ProfileScreenClient> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text(
           'Profile',
@@ -55,11 +56,8 @@ class ProfileScreenClientState extends State<ProfileScreenClient> {
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           if (state is UserLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           } else if (state is UserLoadedState) {
-            //state.userModule.
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),

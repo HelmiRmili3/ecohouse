@@ -30,6 +30,5 @@ List<BlocProvider> getAppProviders() {
         ordersRepository: OrdersRepository(),
       ),
     ),
-    // Add more providers as needed...
   ];
 }

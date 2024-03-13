@@ -1,5 +1,5 @@
-import 'package:ecohouse/core/features/shop/presentation/screens/home_screen_client.dart';
-import 'package:ecohouse/core/features/shop/presentation/screens/orders_screen_client.dart';
+import 'package:ecohouse/core/features/home/presentation/screens/home_screen_client.dart';
+import 'package:ecohouse/core/features/orders/presentation/screens/orders_screen_client.dart';
 import 'package:ecohouse/screens/profile_screen_client.dart';
 import 'package:flutter/material.dart';
 

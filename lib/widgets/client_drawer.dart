@@ -1,5 +1,5 @@
 import 'package:ecohouse/screens/home_screen.dart';
-import 'package:ecohouse/core/features/shop/presentation/screens/home_screen_client.dart';
+import 'package:ecohouse/core/features/home/presentation/screens/home_screen_client.dart';
 import 'package:ecohouse/screens/profile_screen_client.dart';
 //import 'package:ecohouse/widgets/avatar.dart';
 import 'package:ecohouse/widgets/elevaded_button_with_icon.dart';

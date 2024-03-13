@@ -1,9 +1,6 @@
 import 'package:ecohouse/config/providers.dart';
-import 'package:ecohouse/core/features/auth/bloc/auth_bloc.dart';
-import 'package:ecohouse/core/features/auth/bloc/auth_states.dart';
-import 'package:ecohouse/core/features/auth/presentation/screens/login_screen_client.dart';
+import 'package:ecohouse/config/routes.dart';
 import 'package:ecohouse/firebase_options.dart';
-import 'package:ecohouse/core/features/shop/presentation/screens/home_screen_client.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,21 +37,8 @@ class MyApp extends StatelessWidget {
           systemOverlayStyle: SystemUiOverlayStyle.light,
         ),
       ),
-      home: BlocBuilder<AuthBloc, AuthState>(
-        builder: (context, state) {
-          if (state is AuthInitialState) {
-            return const LoginScreenClient();
-          } else if (state is AuthSignedInState) {
-            return const HomeScreenClient();
-          } else if (state is AuthSignedOutState) {
-            return const LoginScreenClient();
-          } else if (state is AuthErrorState) {
-            return Text('Error: ${state.error}');
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
+      routes: routes,
+      initialRoute: Routes.authScreen,
     );
   }
 }

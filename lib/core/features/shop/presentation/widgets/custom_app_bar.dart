@@ -1,10 +1,12 @@
-import 'package:ecohouse/screens/profile_screen_client.dart';
+import 'package:ecohouse/config/routes.dart';
 import 'package:flutter/material.dart';
 
 AppBar buildCustomAppBar(BuildContext context) {
+  int shoppingItemCount = 3; // Replace with the actual shopping item count
   return AppBar(
     automaticallyImplyLeading: false,
     elevation: 0,
+    centerTitle: true,
     title: const Text(
       'Ecohouse',
       style: TextStyle(
@@ -14,56 +16,48 @@ AppBar buildCustomAppBar(BuildContext context) {
       ),
     ),
     actions: [
-      Padding(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-        child: Row(
+      IconButton(
+        icon: Stack(
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ProfileScreenClient(),
-                  ),
-                );
-              },
-              child: Card(
-                elevation: 5,
+            const Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+              child: SizedBox(
+                height: 24,
+                width: 24,
+                child: Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 40,
+                  color: Colors.blueAccent,
+                ),
+              ),
+            ),
+            Positioned(
+              right: 0,
+              top: 0,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
                 child: Container(
-                  height: 40,
-                  width: 120,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: const Row(
-                    children: [
-                      SizedBox(width: 5),
-                      CircleAvatar(
-                        radius: 15,
-                        backgroundImage: AssetImage(
-                          'assets/profile_avatar.jpg',
-                        ), // Replace with your profile picture asset
+                  width: 20,
+                  height: 20,
+                  color: Colors.red,
+                  child: Center(
+                    child: Text(
+                      '$shoppingItemCount',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(width: 10),
-                      Center(
-                        child: Text(
-                          '\$ 2560',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                    ],
+                    ),
                   ),
                 ),
               ),
             ),
           ],
         ),
+        onPressed: () {
+          Navigator.pushNamed(context, Routes.shoppingCard);
+        },
       ),
     ],
   );

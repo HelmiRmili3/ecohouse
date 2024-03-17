@@ -1,3 +1,6 @@
+
+import 'package:ecohouse/core/features/shop/bloc/shop_bloc.dart';
+import 'package:ecohouse/core/features/shop/repository/shop_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecohouse/core/features/auth/bloc/auth_bloc.dart';
 import 'package:ecohouse/core/features/auth/repository/auth_repository.dart';
@@ -28,6 +31,11 @@ List<BlocProvider> getAppProviders() {
     BlocProvider<OrdersBloc>(
       create: (context) => OrdersBloc(
         ordersRepository: OrdersRepository(),
+      ),
+    ),
+    BlocProvider<ShopBloc>(
+      create: (context) => ShopBloc(
+        repository: ShopRepository(),
       ),
     ),
   ];

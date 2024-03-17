@@ -8,7 +8,6 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   final OrdersRepository ordersRepository;
 
   OrdersBloc({required this.ordersRepository}) : super(OrdersInitialState()) {
-    // Register event handlers during initialization
     on<OrdersFetchEvent>(_mapOrdersFetchEventToState);
     on<OrderDeleteEvent>(_mapOrderDeleteToState);
   }
@@ -26,7 +25,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
 
   void _mapOrderDeleteToState(
       OrderDeleteEvent event, Emitter<OrdersState> emit) async {
-    //emit(OrdersInitialState());
+    emit(OrdersInitialState());
     try {
       await ordersRepository.deleteOrder(event.id);
       List<OrderModule> orders = await ordersRepository.fetchOrders();

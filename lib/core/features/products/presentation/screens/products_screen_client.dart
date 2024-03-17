@@ -1,10 +1,12 @@
+import 'package:ecohouse/config/routes.dart';
 import 'package:ecohouse/core/features/products/bloc/shopping_card_bloc.dart';
 import 'package:ecohouse/core/features/products/bloc/shopping_card_events.dart';
 import 'package:ecohouse/core/features/products/bloc/shopping_card_states.dart';
-import 'package:ecohouse/core/features/products/presentation/widgets/custom_app_bar.dart';
 import 'package:ecohouse/core/features/products/presentation/widgets/products_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../shop/presentation/widgets/customAppBar.dart';
 
 class ProductScreenClient extends StatefulWidget {
   const ProductScreenClient({super.key});
@@ -23,7 +25,9 @@ class _ProductScreenClientState extends State<ProductScreenClient> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildCustomAppBar(context),
+      appBar: buildCustomAppBar(context, "Ecohouse",6, () {
+        Navigator.pushNamed(context, Routes.shoppingCard);
+      }),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

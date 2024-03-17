@@ -35,7 +35,10 @@ class _ShopScreenState extends State<ShopScreen> {
                 "Shop",
                 BlocProvider.of<ShopBloc>(context).updatedCart.length,
                 () {
-                  Navigator.pushNamed(context, Routes.shopshoppingCard);
+                  Navigator.pushNamed(
+                      context,
+                      arguments: BlocProvider.of<ShopBloc>(context).updatedCart,
+                      Routes.shopshoppingCard);
                 },
               ),
               body: SafeArea(

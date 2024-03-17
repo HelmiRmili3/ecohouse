@@ -70,22 +70,6 @@ class ShopCard extends StatelessWidget {
                         item.description,
                         style: const TextStyle(fontSize: 14),
                       ),
-                      const SizedBox(height: 10),
-                      // Add to Cart buttons
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('Edit'),
-                          ),
-                          const SizedBox(width: 20),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('Delete'),
-                          ),
-                        ],
-                      ),
                     ],
                   ),
                 ),

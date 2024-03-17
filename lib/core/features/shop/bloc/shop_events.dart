@@ -16,3 +16,15 @@ class ToggaleItemEvent extends ShopEvent {
   @override
   List<Object?> get props => [item];
 }
+
+class DeleteItemEvent extends ShopEvent {
+  final ItemModule item;
+  const DeleteItemEvent({required this.item});
+  @override
+  List<Object?> get props => [item];
+}
+
+class ClearCartEvent extends ShopEvent {
+  @override
+  List<Object?> get props => [];
+}

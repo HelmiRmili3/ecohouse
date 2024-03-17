@@ -13,6 +13,7 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
   ShopBloc({required this.repository}) : super(ShopInitialState()) {
     on<ShopFetchEvent>(_mapShopFetchEventToState);
     on<ToggaleItemEvent>(_mapToggaleItemToState);
+    on<ClearCartEvent>(_mapClearCartToState);
   }
 
   FutureOr<void> _mapShopFetchEventToState(
@@ -35,6 +36,17 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
       } else {
         updatedCart.add(event.item);
       }
+      emit(ShopLoadedState(items: items, cart: updatedCart));
+    } catch (e) {
+      emit(ShopErrorState(error: e.toString()));
+    }
+  }
+
+  FutureOr<void> _mapClearCartToState(
+      ClearCartEvent event, Emitter<ShopState> emit) async {
+    emit(ShopInitialState());
+    try {
+      updatedCart.clear();
       emit(ShopLoadedState(items: items, cart: updatedCart));
     } catch (e) {
       emit(ShopErrorState(error: e.toString()));

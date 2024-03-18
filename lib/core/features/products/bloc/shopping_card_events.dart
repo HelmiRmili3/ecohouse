@@ -1,6 +1,3 @@
-// shopping_cart_events.dart
-import 'dart:io';
-
 import 'package:ecohouse/core/features/products/models/product.dart';
 import 'package:equatable/equatable.dart';
 
@@ -15,27 +12,33 @@ class FetchProducts extends ShoppingCartEvent {
 
 class AddProduct extends ShoppingCartEvent {
   final ProductModule product;
-  final File? image;
-  const AddProduct(this.product, this.image);
-
+  const AddProduct({required this.product});
   @override
   List<Object?> get props => [product];
 }
 
 class IncrementProduct extends ShoppingCartEvent {
   final String productId;
-
   const IncrementProduct(this.productId);
-
   @override
   List<Object?> get props => [productId];
 }
 
 class DecrementProduct extends ShoppingCartEvent {
   final String productId;
-
   const DecrementProduct(this.productId);
-
   @override
   List<Object?> get props => [productId];
+}
+
+class DeleteProduct extends ShoppingCartEvent {
+  final String productId;
+  const DeleteProduct({required this.productId});
+  @override
+  List<Object?> get props => [productId];
+}
+
+class ClearCart extends ShoppingCartEvent {
+  @override
+  List<Object?> get props => [];
 }

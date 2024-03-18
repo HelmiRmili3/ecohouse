@@ -9,6 +9,7 @@ abstract class ShoppingCartState extends Equatable {
   List<Object> get props => [];
 
   Object? get products => props;
+  Object? get selectedproducts => props;
 }
 
 class ShoppingCartInitial extends ShoppingCartState {}
@@ -18,7 +19,10 @@ class ShoppingCartLoading extends ShoppingCartState {}
 class ShoppingCartLoaded extends ShoppingCartState {
   @override
   final List<ProductModule> products;
-  const ShoppingCartLoaded({required this.products});
+  @override
+  final List<ProductModule> selectedproducts;
+  const ShoppingCartLoaded(
+      {required this.selectedproducts, required this.products});
   @override
   List<Object> get props => [products];
 }

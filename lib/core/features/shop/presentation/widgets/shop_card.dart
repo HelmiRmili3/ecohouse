@@ -16,7 +16,7 @@ class ShopCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onLongPress: () {
         context.read<ShopBloc>().add(ToggaleItemEvent(item: item));
       },
       child: Container(

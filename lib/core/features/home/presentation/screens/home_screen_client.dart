@@ -1,5 +1,5 @@
 import 'package:ecohouse/core/features/orders/presentation/screens/orders_screen_client.dart';
-import 'package:ecohouse/core/features/products/presentation/screens/products_screen_client.dart';
+import 'package:ecohouse/core/features/products/presentation/screens/products_screen.dart';
 import 'package:ecohouse/core/features/shop/presentation/screens/shop.dart';
 import 'package:ecohouse/screens/profile_screen_client.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class HomeScreenClient extends StatefulWidget {
 class _HomeScreenClientState extends State<HomeScreenClient> {
   int myCurrentIndex = 0;
   List pages = const [
-    ProductScreenClient(),
+    ProductScreen(),
     ShopScreen(),
     OrderScreenClient(),
     ProfileScreenClient(),

@@ -51,47 +51,50 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
 
   void _mapIncrementProductToState(
       IncrementProduct event, Emitter<ShoppingCartState> emit) async {
-    final List<ProductModule> updatedProducts =
-        (state.selectedproducts as List<ProductModule?>)
-            .map((product) {
-              if (product != null && product.id == event.productId) {
-                return product.copyWith(weight: product.weight + 1);
-              }
-              return product;
-            })
-            .whereType<ProductModule>()
-            .toList();
-
-    emit(ShoppingCartLoaded(
-        products: updatedProducts, selectedproducts: selectedProducts));
+    emit(ShoppingCartInitial());
+    try {
+      for (var product in selectedProducts) {
+        if (product.id == event.productId) {
+          product.weight++;
+        }
+      }
+      emit(ShoppingCartLoaded(
+          products: products, selectedproducts: selectedProducts));
+    } catch (e) {
+      emit(ShoppingCartError(message: 'Failed to add product: $e'));
+    }
   }
 
   void _mapDecrementProductToState(
     DecrementProduct event,
     Emitter<ShoppingCartState> emit,
   ) async {
-    final List<ProductModule> updatedProducts =
-        (state.selectedproducts as List<ProductModule?>)
-            .map((product) {
-              if (product != null &&
-                  product.id == event.productId &&
-                  product.weight > 0) {
-                return product.copyWith(weight: product.weight - 1);
-              }
-              return product;
-            })
-            .whereType<ProductModule>()
-            .toList();
-
-    emit(ShoppingCartLoaded(
-        products: updatedProducts, selectedproducts: selectedProducts));
+    emit(ShoppingCartInitial());
+    try {
+      for (var product in selectedProducts) {
+        if (product.id == event.productId) {
+          if (product.weight > 1) {
+            product.weight--;
+          }
+        }
+      }
+      emit(ShoppingCartLoaded(
+          products: products, selectedproducts: selectedProducts));
+    } catch (e) {
+      emit(ShoppingCartError(message: 'Failed to add product: $e'));
+    }
   }
 
   void _mapDeleteProductToState(
       DeleteProduct event, Emitter<ShoppingCartState> emit) {
-    selectedProducts.removeWhere((product) => product.id == event.productId);
-    emit(ShoppingCartLoaded(
-        selectedproducts: selectedProducts, products: products));
+    emit(ShoppingCartInitial());
+    try {
+      selectedProducts.removeWhere((product) => product.id == event.productId);
+      emit(ShoppingCartLoaded(
+          selectedproducts: selectedProducts, products: products));
+    } catch (e) {
+      emit(ShoppingCartError(message: e.toString()));
+    }
   }
 
   void _mapClearCartToState(
@@ -105,4 +108,5 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
       emit(ShoppingCartError(message: e.toString()));
     }
   }
+
 }

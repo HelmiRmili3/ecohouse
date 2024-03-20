@@ -8,8 +8,10 @@ import 'package:ecohouse/core/features/shop/repository/shop_repository.dart';
 class ShopBloc extends Bloc<ShopEvent, ShopState> {
   final ShopRepository repository;
   String collectionName = "items";
+
   List<ItemModule> updatedCart = [];
   List<ItemModule> items = [];
+  
   ShopBloc({required this.repository}) : super(ShopInitialState()) {
     on<ShopFetchEvent>(_mapShopFetchEventToState);
     on<ToggaleItemEvent>(_mapToggaleItemToState);

@@ -2,8 +2,7 @@ import 'package:ecohouse/core/features/products/bloc/shopping_card_bloc.dart';
 import 'package:ecohouse/core/features/products/bloc/shopping_card_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../widgets/products_grid.dart';
+import '../widgets/product_card2.dart';
 
 class ProductShoppingScreen extends StatefulWidget {
   const ProductShoppingScreen({super.key});
@@ -25,8 +24,16 @@ class _ProductShoppingScreenState extends State<ProductShoppingScreen> {
           if (state is ShoppingCartInitial) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is ShoppingCartLoaded) {
-            return ProductsGrid(
-              products: state.selectedproducts,
+            return SafeArea(
+              minimum: const EdgeInsets.all(16.0),
+              child: ListView.builder(
+                itemCount: state.selectedproducts.length,
+                itemBuilder: (context, index) {
+                  return ProductCard2(
+                    product: state.selectedproducts[index],
+                  );
+                },
+              ),
             );
           } else if (state is ShoppingCartError) {
             return Center(child: Text(state.message));

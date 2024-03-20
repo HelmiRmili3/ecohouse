@@ -20,10 +20,11 @@ class ProductCard extends StatelessWidget {
       },
       child: Card(
         elevation: 5,
-        color:
-            bloc.selectedProducts.contains(product) ? Colors.greenAccent : null,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
+          side: bloc.selectedProducts.contains(product)
+              ? const BorderSide(color: Colors.blue, width: 2)
+              : BorderSide.none,
         ),
         child: Stack(
           children: [

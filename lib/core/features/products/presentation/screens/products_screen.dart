@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shop/presentation/widgets/customAppBar.dart';
+import '../../models/product.dart';
+import '../widgets/product_card.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -44,6 +46,11 @@ class _ProductScreenState extends State<ProductScreen> {
               children: [
                 ProductsGrid(
                   products: state.products,
+                  crossAxisCount:
+                      2, // Example count, you can change as per your requirement
+                  productCardBuilder: (ProductModule product) {
+                    return ProductCard(product: product);
+                  },
                 )
               ],
             ),

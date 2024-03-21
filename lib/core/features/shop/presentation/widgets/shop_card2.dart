@@ -13,6 +13,8 @@ class ShopCard2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<ShopBloc>(context);
+
     return GestureDetector(
         onLongPress: () {
           context.read<ShopBloc>().add(ToggaleItemEvent(item: item));
@@ -30,7 +32,7 @@ class ShopCard2 extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: 150,
+                    width: 100,
                     height: 150,
                     color: Colors.grey[300],
                     child: Image.network(
@@ -66,17 +68,37 @@ class ShopCard2 extends StatelessWidget {
                           style: const TextStyle(fontSize: 14),
                         ),
                         const SizedBox(height: 10),
-                        // Add to Cart buttons
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ElevatedButton(
-                              onPressed: () {},
-                              child: const Text('Edit'),
+                            const SizedBox(width: 12),
+                            Row(
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.remove),
+                                  onPressed: () {
+                                    bloc.add(
+                                        DecrementItemEvent(itemId: item.id));
+                                  },
+                                ),
+                                Text(
+                                  '${item.quantity}',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.add),
+                                  onPressed: () {
+                                    bloc.add(
+                                        IncrementItemEvent(itemId: item.id));
+                                  },
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 20),
+                            const Spacer(),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                bloc.add(DeleteItemEvent(item: item));
+                              },
                               child: const Text('Delete'),
                             ),
                           ],

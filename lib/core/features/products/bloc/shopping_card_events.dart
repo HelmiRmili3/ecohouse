@@ -42,3 +42,11 @@ class ClearCart extends ShoppingCartEvent {
   @override
   List<Object?> get props => [];
 }
+
+class AddOrder extends ShoppingCartEvent {
+  //final SellOrderModule order;
+
+  //const AddOrder({required this.order});
+  @override
+  List<Object?> get props => [];
+}

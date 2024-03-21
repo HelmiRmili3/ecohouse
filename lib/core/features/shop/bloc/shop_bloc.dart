@@ -11,11 +11,69 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
 
   List<ItemModule> updatedCart = [];
   List<ItemModule> items = [];
-  
+
   ShopBloc({required this.repository}) : super(ShopInitialState()) {
     on<ShopFetchEvent>(_mapShopFetchEventToState);
     on<ToggaleItemEvent>(_mapToggaleItemToState);
     on<ClearCartEvent>(_mapClearCartToState);
+    on<DeleteItemEvent>(_mapDeleteItemToState);
+    on<IncrementItemEvent>(_mapIncrementItemToState);
+    on<DecrementItemEvent>(_mapDecrementItemToState);
+    on<AddOrderEvent>(_mapAddOrderToState);
+    //Filter event
+  }
+  FutureOr<void> _mapIncrementItemToState(
+      IncrementItemEvent event, Emitter<ShopState> emit) {
+    emit(ShopInitialState());
+    try {
+      for (var product in updatedCart) {
+        if (product.id == event.itemId) {
+          product.quantity++;
+        }
+      }
+      emit(ShopLoadedState(items: items, cart: updatedCart));
+    } catch (e) {
+      emit(ShopErrorState(error: e.toString()));
+    }
+  }
+
+  FutureOr<void> _mapDecrementItemToState(
+      DecrementItemEvent event, Emitter<ShopState> emit) {
+    emit(ShopInitialState());
+    try {
+      for (var product in updatedCart) {
+        if (product.id == event.itemId) {
+          product.quantity--;
+        }
+      }
+      emit(ShopLoadedState(items: items, cart: updatedCart));
+    } catch (e) {
+      emit(ShopErrorState(error: e.toString()));
+    }
+  }
+
+  FutureOr<void> _mapAddOrderToState(
+      AddOrderEvent event, Emitter<ShopState> emit) {
+    emit(ShopInitialState());
+    try {
+      repository.addOrder(updatedCart);
+      updatedCart.clear();
+      emit(ShopLoadedState(items: items, cart: updatedCart));
+    } catch (e) {
+      emit(ShopErrorState(error: e.toString()));
+    }
+  }
+
+  FutureOr<void> _mapDeleteItemToState(
+      DeleteItemEvent event, Emitter<ShopState> emit) async {
+    emit(ShopInitialState());
+
+    try {
+      updatedCart.remove(event.item);
+      emit(ShopLoadedState(items: items, cart: updatedCart));
+    } catch (e) {
+      emit(ShopErrorState(error: e.toString()));
+    }
   }
 
   FutureOr<void> _mapShopFetchEventToState(

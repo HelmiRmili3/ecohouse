@@ -19,7 +19,10 @@ class ProductCard2 extends StatelessWidget {
         bloc.add(AddProduct(product: product));
       },
       child: Container(
-        decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.circular(20.0)),
+        margin: const EdgeInsets.all(4.0),
         height: 80,
         child: Row(
           children: [

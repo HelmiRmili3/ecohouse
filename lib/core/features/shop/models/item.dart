@@ -8,16 +8,15 @@ class ItemModule {
   final String description;
   final String imageUrl;
   int quantity;
-  bool selected;
 
-  ItemModule(
-      {required this.id,
-      required this.name,
-      required this.points,
-      required this.description,
-      required this.imageUrl,
-      this.quantity = 1, // Default quantity to 1
-      this.selected = false});
+  ItemModule({
+    required this.id,
+    required this.name,
+    required this.points,
+    required this.description,
+    required this.imageUrl,
+    this.quantity = 1,
+  });
 
   factory ItemModule.create({
     required String name,
@@ -60,7 +59,6 @@ class ItemModule {
     String? description,
     String? imageUrl,
     int? quantity,
-    bool? selected,
   }) {
     return ItemModule(
       id: this.id,
@@ -69,7 +67,6 @@ class ItemModule {
       description: description ?? this.description,
       imageUrl: imageUrl ?? this.imageUrl,
       quantity: quantity ?? this.quantity, // Include quantity in copy
-      selected: selected ?? this.selected,
     );
   }
 

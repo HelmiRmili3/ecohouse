@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
 class ProductModule {
@@ -58,6 +59,16 @@ class ProductModule {
       weight: weight ?? this.weight,
       pointsPerKg: this.pointsPerKg,
       image: this.image,
+    );
+  }
+
+  factory ProductModule.fromSnapshot(DocumentSnapshot snapshot) {
+    return ProductModule(
+      id: snapshot["id"],
+      name: snapshot["name"],
+      pointsPerKg: snapshot["pointsPerKg"],
+      weight: snapshot["weight"],
+      image: snapshot["image"],
     );
   }
 }

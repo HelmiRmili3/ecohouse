@@ -1,4 +1,6 @@
 // shopping_cart_bloc.dart
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:ecohouse/core/features/products/repository/shopping_card_repository.dart';
 import 'package:ecohouse/core/features/products/models/product.dart';
@@ -19,9 +21,10 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     on<DecrementProduct>(_mapDecrementProductToState);
     on<DeleteProduct>(_mapDeleteProductToState);
     on<ClearCart>(_mapClearCartToState);
+    on<AddOrder>(_mapAddOrderToState);
   }
 
-  void _mapFetchProductsToState(
+  FutureOr<void> _mapFetchProductsToState(
       FetchProducts event, Emitter<ShoppingCartState> emit) async {
     emit(ShoppingCartLoading());
     try {
@@ -33,7 +36,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     }
   }
 
-  void _mapAddProductToState(
+  FutureOr<void> _mapAddProductToState(
       AddProduct event, Emitter<ShoppingCartState> emit) async {
     emit(ShoppingCartInitial());
     try {
@@ -49,7 +52,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     }
   }
 
-  void _mapIncrementProductToState(
+  FutureOr<void> _mapIncrementProductToState(
       IncrementProduct event, Emitter<ShoppingCartState> emit) async {
     emit(ShoppingCartInitial());
     try {
@@ -65,7 +68,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     }
   }
 
-  void _mapDecrementProductToState(
+  FutureOr<void> _mapDecrementProductToState(
     DecrementProduct event,
     Emitter<ShoppingCartState> emit,
   ) async {
@@ -85,7 +88,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     }
   }
 
-  void _mapDeleteProductToState(
+  FutureOr<void> _mapDeleteProductToState(
       DeleteProduct event, Emitter<ShoppingCartState> emit) {
     emit(ShoppingCartInitial());
     try {
@@ -97,7 +100,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     }
   }
 
-  void _mapClearCartToState(
+  FutureOr<void> _mapClearCartToState(
       ClearCart event, Emitter<ShoppingCartState> emit) async {
     emit(ShoppingCartInitial());
     try {
@@ -109,4 +112,18 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     }
   }
 
+  FutureOr<void> _mapAddOrderToState(
+      AddOrder event, Emitter<ShoppingCartState> emit) async {
+    emit(ShoppingCartInitial());
+    try {
+      repository.addOrder(selectedProducts);
+      selectedProducts.clear();
+      emit(ShoppingCartLoaded(
+        selectedproducts: selectedProducts,
+        products: products,
+      ));
+    } catch (e) {
+      emit(ShoppingCartError(message: e.toString()));
+    }
+  }
 }

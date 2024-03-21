@@ -28,3 +28,23 @@ class ClearCartEvent extends ShopEvent {
   @override
   List<Object?> get props => [];
 }
+
+class IncrementItemEvent extends ShopEvent {
+  final String itemId;
+
+  const IncrementItemEvent({required this.itemId});
+  @override
+  List<Object?> get props => [itemId];
+}
+
+class DecrementItemEvent extends ShopEvent {
+  final String itemId;
+  const DecrementItemEvent({required this.itemId});
+  @override
+  List<Object?> get props => [itemId];
+}
+
+class AddOrderEvent extends ShopEvent {
+  @override
+  List<Object?> get props => [];
+}

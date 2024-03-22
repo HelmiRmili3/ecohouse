@@ -29,7 +29,7 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<ShoppingCartBloc, ShoppingCartState>(
       builder: (context, state) {
-        if (state is ShoppingCartLoading) {
+        if (state is ShoppingCartInitial) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is ShoppingCartLoaded) {
           return Scaffold(

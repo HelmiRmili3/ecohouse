@@ -43,7 +43,9 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     try {
       for (var product in updatedCart) {
         if (product.id == event.itemId) {
-          product.quantity--;
+          if (product.quantity > 1) {
+            product.quantity--;
+          }
         }
       }
       emit(ShopLoadedState(items: items, cart: updatedCart));

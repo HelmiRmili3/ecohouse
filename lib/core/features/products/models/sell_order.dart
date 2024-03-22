@@ -45,7 +45,7 @@ class SellOrderModule {
       'orderDate': orderDate.toIso8601String(),
       'totalPoints': totalPoints,
       'totalWeight': totalWeight,
-      'status': status.toString(),
+      'status': status.toString().split('.').last,
     };
   }
 

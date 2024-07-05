@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileScreenClient extends StatefulWidget {
-  const ProfileScreenClient({Key? key}) : super(key: key);
+  const ProfileScreenClient({super.key});
 
   @override
   ProfileScreenClientState createState() => ProfileScreenClientState();
@@ -73,22 +73,22 @@ class ProfileScreenClientState extends State<ProfileScreenClient> {
                             backgroundImage:
                                 NetworkImage(state.userModule.imageUrl),
                           ),
-                          Positioned(
-                            bottom: 5,
-                            right: 5,
-                            child: ClipOval(
-                              child: Container(
-                                color: Colors.amber,
-                                child: IconButton(
-                                  onPressed: () {
-                                    // Your onPressed logic here
-                                  },
-                                  icon: const Icon(Icons.edit),
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
+                          // Positioned(
+                          //   bottom: 5,
+                          //   right: 5,
+                          //   child: ClipOval(
+                          //     child: Container(
+                          //       color: Colors.amber,
+                          //       child: IconButton(
+                          //         onPressed: () {
+                          //           // Your onPressed logic here
+                          //         },
+                          //         icon: const Icon(Icons.edit),
+                          //         color: Colors.white,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

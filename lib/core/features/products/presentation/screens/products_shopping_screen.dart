@@ -4,6 +4,7 @@ import 'package:ecohouse/core/features/products/bloc/shopping_card_states.dart';
 import 'package:ecohouse/core/features/products/presentation/widgets/total_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/product_card2.dart';
 
 class ProductShoppingScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _ProductShoppingScreenState extends State<ProductShoppingScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(
-                    height: 550,
+                    height: 400.h,
                     child: ListView.builder(
                       itemCount: state.selectedproducts.length,
                       itemBuilder: (context, index) {
@@ -48,11 +49,11 @@ class _ProductShoppingScreenState extends State<ProductShoppingScreen> {
                     ),
                   ),
                   TotalCard(weight: weight, points: points),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.blueAccent),
+                          WidgetStateProperty.all<Color>(Colors.blueAccent),
                     ),
                     onPressed: bloc.selectedProducts.isNotEmpty
                         ? () {
@@ -65,7 +66,7 @@ class _ProductShoppingScreenState extends State<ProductShoppingScreen> {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   ElevatedButton(
                       onPressed: () {
                         bloc.add(ClearCart());

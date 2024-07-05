@@ -5,6 +5,7 @@ import 'package:ecohouse/core/features/shop/bloc/shop_states.dart';
 import 'package:ecohouse/core/features/shop/models/item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/shop_card2.dart';
 
@@ -39,12 +40,12 @@ class _ShopShoppingCardState extends State<ShopShoppingCard> {
             int points = bloc.repository.calculateTotalPoints(widget.items);
             int quantity = bloc.repository.calculateTotalQuantity(widget.items);
             return SafeArea(
-              minimum: const EdgeInsets.all(16.0),
+              minimum: EdgeInsets.all(16.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(
-                    height: 550.0,
+                    height: 450.h,
                     child: ListView.builder(
                       itemCount: widget.items.length,
                       itemBuilder: (context, index) {
@@ -53,9 +54,6 @@ class _ShopShoppingCardState extends State<ShopShoppingCard> {
                         );
                       },
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
                   ),
                   TotalCard(weight: quantity, points: points),
                   ElevatedButton(

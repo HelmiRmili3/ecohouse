@@ -76,7 +76,6 @@ class AuthRepository {
       DocumentReference userDocRef =
           usersCollection.doc(userId).collection('userCredential').doc();
       await userDocRef.set(user.toJson());
-
       //print('User data added successfully with ID: ${userDocRef.id}');
     } catch (e) {
       throw Exception('Failed to add order to Firestore: $e');

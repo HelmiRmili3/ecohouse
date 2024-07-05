@@ -2,14 +2,15 @@ import 'package:ecohouse/core/features/shop/bloc/shop_bloc.dart';
 import 'package:ecohouse/core/features/shop/bloc/shop_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../models/item.dart';
 
 class ShopCard2 extends StatelessWidget {
   final ItemModule item;
   const ShopCard2({
-    Key? key,
+    super.key,
     required this.item,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,58 +21,57 @@ class ShopCard2 extends StatelessWidget {
           context.read<ShopBloc>().add(ToggaleItemEvent(item: item));
         },
         child: Container(
-          margin: const EdgeInsets.only(bottom: 10),
+          constraints: const BoxConstraints.expand(),
+          margin: EdgeInsets.only(bottom: 10.h),
           child: Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(8.r),
               side: BorderSide.none,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.all(10.w),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: 100,
-                    height: 150,
+                    width: 100.w,
+                    height: 150.h,
                     color: Colors.grey[300],
                     child: Image.network(
                       item.imageUrl,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  const Spacer(),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
                           item.name,
-                          style: const TextStyle(
-                            fontSize: 18,
+                          style: TextStyle(
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 5),
-                        // Points
+                        SizedBox(height: 5.h),
                         Text(
                           '\$${item.points}',
-                          style: const TextStyle(
-                            fontSize: 16,
+                          style: TextStyle(
+                            fontSize: 16.sp,
                             color: Colors.green,
                           ),
                         ),
-                        const SizedBox(height: 5),
-                        // Description
+                        SizedBox(height: 5.h),
                         Text(
                           item.description,
-                          style: const TextStyle(fontSize: 14),
+                          style: TextStyle(fontSize: 14.sp),
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 5.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const SizedBox(width: 12),
+                            SizedBox(width: 12.w),
                             Row(
                               children: [
                                 IconButton(
@@ -83,7 +83,7 @@ class ShopCard2 extends StatelessWidget {
                                 ),
                                 Text(
                                   '${item.quantity}',
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: 16.sp),
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.add),

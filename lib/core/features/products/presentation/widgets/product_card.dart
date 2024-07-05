@@ -3,13 +3,14 @@ import 'package:ecohouse/core/features/products/bloc/shopping_card_events.dart';
 import 'package:ecohouse/core/features/products/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModule product;
   const ProductCard({
-    Key? key,
+    super.key,
     required this.product,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +33,8 @@ class ProductCard extends StatelessWidget {
               children: [
                 Container(
                   margin: const EdgeInsets.all(16.0),
-                  height: 90,
-                  width: 90,
+                  height: 80.h,
+                  width: 80.w,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(product.image),
@@ -50,10 +51,10 @@ class ProductCard extends StatelessWidget {
               ],
             ),
             Positioned(
-              top: 8.0,
-              right: 8.0,
+              top: 8.h,
+              right: 8.w,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+                padding: EdgeInsets.symmetric(horizontal: 8.h),
                 decoration: BoxDecoration(
                   color: Colors.blue[100],
                   borderRadius: BorderRadius.circular(50),

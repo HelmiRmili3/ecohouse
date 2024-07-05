@@ -16,8 +16,14 @@ class LoginScreenClient extends StatefulWidget {
 
 class _LoginPageState extends State<LoginScreenClient> {
   final _formKey = GlobalKey<FormState>();
-
   bool isLoding = false;
+  bool abscure = true;
+
+  void toggleObscure() {
+    setState(() {
+      abscure = !abscure;
+    });
+  }
 
   final ValueNotifier<bool> passwordNotifier = ValueNotifier(true);
   final ValueNotifier<bool> fieldValidNotifier = ValueNotifier(false);
@@ -76,7 +82,7 @@ class _LoginPageState extends State<LoginScreenClient> {
               passwordController.text,
             )
             .then((value) {
-          if (value != null) {
+          if (value != null  && value.uid != "zcdzPcmuZsenVIKzRlJu40KEPhS2") {
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -183,7 +189,7 @@ class _LoginPageState extends State<LoginScreenClient> {
                     valueListenable: passwordNotifier,
                     builder: (_, passwordObscure, __) {
                       return AppTextFormField(
-                        obscureText: true,
+                        obscureText: abscure,
                         controller: passwordController,
                         labelText: AppStrings.password,
                         textInputAction: TextInputAction.done,
@@ -197,12 +203,14 @@ class _LoginPageState extends State<LoginScreenClient> {
                                   : AppStrings.invalidPassword;
                         },
                         suffixIcon: IconButton(
-                          onPressed: () => passwordNotifier.value = true,
+                          onPressed: toggleObscure,
                           style: IconButton.styleFrom(
                             minimumSize: const Size.square(48),
                           ),
-                          icon: const Icon(
-                            Icons.visibility_off_outlined,
+                          icon: Icon(
+                            abscure
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
                             size: 20,
                             color: Colors.black,
                           ),

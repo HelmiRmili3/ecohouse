@@ -28,7 +28,7 @@ class ProfileScreenClientState extends State<ProfileScreenClient> {
           .authRepository
           .signOut()
           .then((value) {
-        Navigator.push(context,
+        Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const LoginScreenClient()));
         setState(() {
           isLoding = false;

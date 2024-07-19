@@ -37,11 +37,6 @@ class _LoginPageState extends State<LoginScreenClient> {
       ..addListener(controllerListener);
   }
 
-  void disposeControllers() {
-    emailController.dispose();
-    passwordController.dispose();
-  }
-
   void controllerListener() {
     final email = emailController.text;
     final password = passwordController.text;
@@ -62,12 +57,6 @@ class _LoginPageState extends State<LoginScreenClient> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    disposeControllers();
-    super.dispose();
-  }
-
   Future<Widget?> login() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -82,7 +71,7 @@ class _LoginPageState extends State<LoginScreenClient> {
               passwordController.text,
             )
             .then((value) {
-          if (value != null  && value.uid != "zcdzPcmuZsenVIKzRlJu40KEPhS2") {
+          if (value != null && value.uid != "zcdzPcmuZsenVIKzRlJu40KEPhS2") {
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -104,6 +93,13 @@ class _LoginPageState extends State<LoginScreenClient> {
       }
     }
     return null;
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -230,8 +226,8 @@ class _LoginPageState extends State<LoginScreenClient> {
                         onPressed: login,
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.resolveWith<Color?>(
-                            (Set<MaterialState> states) {
+                              WidgetStateProperty.resolveWith<Color?>(
+                            (Set<WidgetState> states) {
                               return const Color.fromARGB(255, 116, 248, 8);
                             },
                           ),
@@ -304,7 +300,7 @@ class _LoginPageState extends State<LoginScreenClient> {
               const SizedBox(width: 4),
               TextButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const SignUpScreenClient(),
